@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* background-color: #606319; */
+  background-color: #E58002;
+}
+
+.section_container {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),  url('../images/food5.jpg') no-repeat;
+  height: 30vh;
+  background-size: cover;
+  -webkit-background-size: cover;
+  position: relative;
+  background-position: center;
+}
+
+.upperDiv {
+  /* background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/pic-2.JPG); */
+  background: url("images/food1.jpg");
+  background-size: cover;
+  /* background-position: left; */
+  background-blend-mode: saturation;
+  /* height: 40%; */
+}
+
+.upperDivCover {
+  height: 200px;
+  background-color: #606319;
+  opacity: 0.4;
+}
+
+.separatorDiv {
+  background-color: #009B94;
+  height: 2px;
+}
+
+.gridContainer {
+  background: url("images/pic-10.jpg");
+  background-size: cover;
+  background-position: bottom;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-auto-rows: minmax(400px, auto);
+  /* grid-auto-columns: minmax(40, auto); */
+}
+
+.linkDiv {
+  padding-top: 50px;
+  border-right: 1px solid #009B94;
+  background-color: #282C34;
+}
+
+.links {
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #009B94;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+
+}
+
+.links:hover {
+  background-color: #E58002;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  /* padding: 20px; */
+}
+/* #linkDivHeader {
+  width: 100%;
+  height: 10%;
+  background-color: #9EBC20;
+} */
+
+.tableDiv {
+  background-color: #282C34;
+  /* background-color: #122601; */
+  /* opacity: 0.8; */
+  color: white;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  color: #E58002;
+}
+
+tr:nth-child(even) {
+  /* background-color: #9ebc20; */
+}
+
+tr {
+  border-bottom: 1px solid #009B94;
+  /* border-bottom: 1px solid #E58002; */
+}
+
+th, .td_serialNo {
+  color: white;
+  background-color: #009B94;
+}
+
+#th_serialNo {
+  /* background-color: #606319; */
+  background-color: transparent;
+}

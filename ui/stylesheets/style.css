@@ -1,0 +1,208 @@
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Abel', sans-serif;
+  background-color: #282C34;
+}
+
+/*********************** NAV LINKS *********************/
+
+.headerDiv{
+  height: 50px;
+  opacity: 0.8;
+  padding-top: 50px;
+  margin-bottom: 20px;
+}
+
+.menuDiv {
+  float: right;
+  margin-right: 50px;
+  /* background-color: lightgrey; */
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+ul li {
+  float: left;
+  width: 120px;
+  height: 40px;
+  line-height: 40px; /*centers the text verically */
+  text-align: center; /*centers the text horizontally*/
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #00BAB1;
+  border-radius: 5px;
+  margin-right: 10px;
+
+}
+
+ul li a {
+  text-decoration: none;
+  display: block;
+  /* color: #324703; */
+  color: white;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+ul li a:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+.innerUL li {
+  display: none;
+}
+
+.outerUL li:hover .innerUL li {
+  display: block;
+}
+/*********************** NAV LINKS ENDS *********************/
+
+
+/*********************** UPPER SECTION AREA *********************/
+
+#main_upper_level_container { /*edge with yellow triangle*/
+  background-color: #E0AF1A;
+}
+
+.section_container {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),  url('../images/food4.jpg') no-repeat;
+  height: 100vh;
+  background-size: cover;
+  -webkit-background-size: cover;
+  position: relative;
+  background-position: center;
+  /* clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%); */
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 60%);
+}
+
+.div_container {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.div_container h1 {
+  margin-bottom: 0;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+#lbl_fast {
+  color: yellow;
+}
+
+#lbl_eat_responsibly {
+  /* float: right; */
+  color: #E0AF1A;
+  font-family: 'Cedarville Cursive', cursive;
+  margin-left: 40%;
+  font-size: 22px;
+}
+
+.div_container span {
+  margin-left: 5rem;
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+.form_search {
+  text-align: center;
+}
+.form_search .text_search {
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2rem;
+  padding: .6rem;
+  border: none;
+  outline: none;
+}
+
+.form_search button{
+  width: 40%;
+  height: 40px;
+  /* display: inline-block; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* margin-top: 1rem; */
+  margin: 1rem auto 0rem;
+  text-align: center;
+
+  background-color: #00bab1;
+  color: white;
+  padding: .6rem;
+  border: none;
+  border-radius: .3rem;
+}
+
+.form_search button:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+/*********************** END OF UPPER SECTION AREA *********************/
+
+
+#lower_section_title {
+  color: white;
+  text-align: center;
+}
+
+
+/*********************** LOWER SECTION AREA *********************/
+   /*Items section*/
+
+.lower_section {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  background-color: #282C34;
+}
+
+.div_products {
+  color: white;
+  float: left;
+  /* width: 32%; */
+  width: 251px;
+  height: 251px;
+  margin-top: .3rem;
+  margin-left: 1rem;
+}
+
+/* .div_products:first-of-type {
+  margin-left: 10px;
+} */
+
+#first_product {
+  margin-left: 50px;
+}
+
+.img_responsive {
+  max-width: 100%;
+}
+
+img:hover {
+  /* outline: 5px solid red; */
+  transform: scale(1.1);
+  transition: all, .5s;
+}
+
+@media screen and (max-width: 700px) {
+  .div_products {
+    width: 100%;
+    float
+  }
+}

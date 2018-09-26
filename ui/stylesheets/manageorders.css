@@ -1,0 +1,195 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* background-color: #606319; */
+  background-color: #122601;
+}
+
+.section_container {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),  url('../images/food7.jpg') no-repeat;
+  height: 30vh;
+  background-size: cover;
+  -webkit-background-size: cover;
+  position: relative;
+  background-position: center;
+}
+
+.upperDiv {
+  /* background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/pic-2.JPG); */
+  background: url("images/pic-6.JPG");
+  background-size: cover;
+  /* background-position: left; */
+  background-blend-mode: saturation;
+  /* height: 40%; */
+}
+
+.upperDivCover {
+  height: 200px;
+  background-color: #606319;
+  opacity: 0.4;
+}
+
+.separatorDiv {
+  background-color: #9EBC20;
+  height: 2px;
+}
+
+.gridContainer {
+  background: url("images/pic-2.jpg");
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  grid-auto-rows: minmax(400px, auto);
+  /* grid-auto-columns: minmax(40, auto); */
+}
+
+.linkDiv {
+  padding-top: 50px;
+  border-right: 1px solid #9EBC20;
+  background-color: #122601;
+}
+
+.links {
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  /* background-color: #606319; */
+  margin-bottom: 20px;
+  margin-left: 10px;
+
+}
+
+.links:hover {
+  background-color: #E0AF1A;
+  border-radius: 5px;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+}
+
+
+.tableDiv {
+  /* background-color: #606319; */
+  background-color: #122601;
+  color: white;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  opacity: 0.9;
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  /* background-color: #9ebc20; */
+}
+
+tr {
+  border-bottom: 1px solid #9EBC20
+}
+
+th, .td_serialNo {
+  /* background-color: #4caf50; */
+  background-color: #9EBC20;
+}
+
+#th_serialNo {
+  /* background-color: #606319; */
+  background-color: transparent;
+}
+
+.status, .accDec {
+  cursor: pointer;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  /* width: 80px; */
+}
+
+
+.status:hover {
+  color: #BABEA2;
+  font-style: oblique;
+  /* text-transform: lowercase; */
+  font-size: 20px;
+}
+
+.incomplete {
+  color: orange;
+  /* font-size: 14px; */
+}
+
+.accDec:hover {
+  cursor: pointer;
+  /* color: #A7BF22; */
+  color: #BABEA2;
+  font-style: oblique;
+  /* text-transform: lowercase; */
+  font-size: 20px;
+}
+
+.declined {
+  color: red;
+}
+
+.btn {
+  color: white;
+  background-color: #F44336;
+  /* opacity: 0.5; */
+  font-size: 12px;
+  padding: 3px 7px;
+  text-align: center;
+  text-decoration: none;
+  /* outline: none; */
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+
+  /* position: relative; */
+  /* overflow: hidden; */
+
+}
+
+.btn:active {
+  background-color: red;
+  /* box-shadow: 0 5px #666; */
+  transform: translate(4px);
+  height: 22px;
+  width: 50px;
+  font-size: 12px
+}
+
+
+.tableDiv input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  width: 400px;
+  background: #E7B106;
+  color: black;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-left: 440px;
+  border-radius: 10px;
+}
+
+.tableDiv input[type="submit"]:hover{
+  cursor: pointer;
+  background: #90AD1D;
+  color: #000;
+}
