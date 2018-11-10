@@ -1,0 +1,61 @@
+{
+    "name": "fast-food-fast",
+    "version": "1.0.0",
+    "description": "A food delivery service app",
+    "main": "./server/index.js",
+    "scripts": {
+        "dev-start": "babel-watch ./server/index.js",
+        "start": "npm run build && node ./dist/index.js",
+        "build": "babel ./server -d dist",
+        "test": "export NODE_ENV=test && nyc --reporter=lcov mocha --recursive ./tests/* --require babel-register --exit",
+        "cover": "nyc report --reporter=text-lcov | coveralls",
+        "coverage": "export NODE_ENV=test && nyc mocha --recursive ./tests/* --require babel-register --exit",
+        "dev": "nodemon --exec babel-node ./server/index.js",
+        "purge-db": "echo 'DROP DATABASE IF EXISTS fastfoodfast;' | psql -U postgres && echo 'CREATE DATABASE fastfoodfast;' | psql -U postgres",
+        "setup-schema": "psql -U postgres fastfoodfast < ./server/db/schema.sql",
+        "config-db": "npm run purge-db && npm run setup-schema",
+        "setup-testdb": "echo 'DROP DATABASE IF EXISTS fastfoodfast_test;' | psql -U postgres && echo 'CREATE DATABASE fastfoodfast_test;' | psql -U postgres",
+        "seed-db": "psql -U postgres fastfoodfast < ./server/db/seed.sql"
+    },
+    "engines": {
+        "node": "8.12.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chingsley/fastfoodfast-home"
+    },
+    "author": "Eneja KC",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/chingsley/fastfoodfast-home/issues"
+    },
+    "homepage": "https://github.com/chingsley/fastfoodfast-home/blob/develop/README.md",
+    "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-stage-2": "^6.24.1",
+        "bcrypt": "^3.0.2",
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.4",
+        "dotenv": "^6.0.0",
+        "express": "^4.16.3",
+        "jsonwebtoken": "^8.3.0",
+        "make-runnable": "^1.3.6",
+        "moment": "^2.22.2",
+        "multer": "^1.4.1",
+        "pg": "^7.4.3",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "babel-watch": "^2.0.7",
+        "chai": "^4.1.2",
+        "chai-http": "^4.2.0",
+        "coveralls": "^3.0.2",
+        "eslint": "^5.8.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "mocha": "^5.2.0",
+        "nodemon": "^1.18.4",
+        "nyc": "^13.0.1"
+    }
+}
