@@ -58,21 +58,31 @@ class Inspect {
         return next();
     }// end static signin
 
-    static updateStatus(req, res, next) {
+    static async updateStatus(req, res, next) {
         const { status } = req.body;
+        if(!status) return res.status(400).json({status: 'error', message: 'you are missing the status field'});
         
         if (
             status !== 'complete' && 
             status !== 'processing' &&
-            status !== 'cancelled'
+            status !== 'cancelled' &&
+            status !== 'new'
 
         ) {
             return res.status(400).json({
                 status: 'error',
-                message: `Incorrect status type. \n Allowed values are 'complete', 'processing', or 'cancelled'`
+                message: `Incorrect status type. Allowed values are 'new', 'complete', 'processing', or 'cancelled'`
             });
         }
 
+        if(!Number.isInteger(Number(req.params.orderId))){
+            return res.status(400).json({status: 'error', message: 'invalid order id'});
+        }
+
+        let queryString = `SELECT * FROM orders WHERE id=$1`;
+        const order = (await pool.query(queryString, [req.params.orderId])).rows[0];
+        if(!order) return res.status(404).json({status:'error', message: 'no order matches the specified id'});
+        req.order = order;
         req.status = status;
         return next();
     } // end static updateStatus
@@ -167,6 +177,11 @@ class Inspect {
             return res.status(404).json({
                 status: 'error',
                 message: 'one of the requested food items does not exist',
+                request: {
+                    type: 'GET',
+                    returns: 'all existing food items',
+                    url: `http://localhost:${process.env.PORT}/api/v1/menu`
+                }
             });
         }
 
@@ -183,6 +198,58 @@ class Inspect {
         req.foodItemsTotalPrice = foodItemsTotalPrice;
         return next();
     } // end static async newOrder
+
+    static async getOrders(req, res, next) {
+        const selectQuery = `SELECT * FROM orders WHERE owner_id=$1`;
+        const selectAllQuery = `SELECT * FROM orders`;
+        const allOrders = (await pool.query(selectAllQuery)).rows;
+        const ordersForThisUser = (await pool.query(selectQuery, [req.userId])).rows;
+        let orders = req.userStatus === 'admin' ? allOrders : ordersForThisUser;
+        if(!orders) {
+            return res.status(404).json({
+                status: 'error',
+                message: `no orders found`
+            });
+        }
+        req.orders = orders;
+        return next();
+    }// end getOrders
+
+    static async getOneOrder(req, res, next) {
+        if(!Number.isInteger(Number(req.params.id))) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'invalid id for an order'
+            });
+        }
+
+        const adminQueryString = `SELECT * FROM orders WHERE id=$1`;
+        const customerQueryString = `SELECT * FROM orders WHERE id=$1 AND owner_id=$2`;
+        const order = req.userStatus === 'admin' ? 
+                (await pool.query(adminQueryString, [req.params.id])).rows[0] :
+                (await pool.query(customerQueryString, [req.params.id, req.userId])).rows[0];
+        if(!order) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'order not found'
+            });
+        }
+        req.order = order;
+        return next();
+    }// end getOneOrder
+
+    static async getUserOrderHistory(req, res, next){
+        if(!Number.isInteger(Number(req.params.userId))) {
+            return res.status(400).json({status: 'error', message: 'invalid user id'});
+        }
+        const fetchQuery = `SELECT * FROM orders WHERE owner_id = $1`;
+        const customerOrders = (await pool.query(fetchQuery, [req.params.userId])).rows;
+        if(customerOrders.length === 0) {
+            return res.status(404).json({status: 'error', message:'no orders found for the specified user id'});
+        }
+        req.customerOrders = customerOrders;
+        return next();
+    }// end getOneCustomerOrders
 
 } // end class Inspect 
 

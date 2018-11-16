@@ -5,9 +5,10 @@ class MenuController {
         try {
             const menu = (await pool.query('SELECT * FROM menu')).rows;
             menu.forEach(item => {
+                item.food_image = `http://localhost:${process.env.PORT}/${item.food_image}`
                 item.request = {
                     type: 'GET',
-                    ulr: `http://localhost:3000/api/v1/menu/${item.id}`
+                    ulr: `http://localhost:${process.env.PORT}/api/v1/menu/${item.id}`
                 }
             });
             res.status(200).json({
@@ -20,7 +21,7 @@ class MenuController {
         } catch (error) {
             res.status(500).json({
                 status: 'error',
-                message: 'see line 16 menuController.js'
+                message: 'internal server error, please try again'
             });
         }
     } // end static async getMenu
@@ -29,11 +30,12 @@ class MenuController {
         try{
             // const selectQuery = 'SELECT * FROM menu WHERE id=$1';
             // const item = (await pool.query(selectQuery, [req.params.id])).rows[0];
+            req.item.food_image = `http://localhost:${process.env.PORT}/${req.item.food_image}`;
             return res.status(200).json({
                 menuItem: req.item,
                 request: {
                     type: 'GET',
-                    url: "http://localhost:3000/api/v1/menu"
+                    url: `http://localhost:${process.env.PORT}/api/v1/menu`
                 },
             });
         } catch(error) {
@@ -56,13 +58,13 @@ class MenuController {
                 food: newFood,
                 request: {
                     type: 'GET',
-                    url: `http://localhost:3000/api/v1/menu/${newFood.id}`
+                    url: `http://localhost:${process.env.PORT}/api/v1/menu/${newFood.id}`
                 }
             });
         } catch(error) {
             res.status(500).json({
                 status: 'error',
-                message: 'see line 35 menuController.js'
+                message: 'internal server error, please try again.'
             });
         }
     }// end static async addFood
@@ -76,7 +78,7 @@ class MenuController {
                 message: 'food item successfully deleted',
                 request: {
                     type: 'GET',
-                    url: 'http://localhost:3000/api/v1/menu'
+                    url: `http://localhost:${process.env.PORT}/api/v1/menu`
                 }
             });
         } catch(error) {

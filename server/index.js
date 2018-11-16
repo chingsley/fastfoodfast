@@ -5,7 +5,8 @@ import cors from 'cors';
 
 import authRouter from './routes/authRouter';
 import menuRouter from './routes/menuRouter';
-// import ordersRouter from './routes/ordersRouter';
+import ordersRouter from './routes/ordersRouter';
+import usersRouter from './routes/usersRouter';
 
 dotenv.config();
 const app = express();
@@ -28,9 +29,14 @@ app.use('/api/v1/auth', authRouter);
 // Menu routes 
 app.use('/api/v1/menu', menuRouter);
 
-
 // route to get uploaded food images
 app.use('/uploads', express.static('uploads'));
+
+// Orders routes
+app.use('/api/v1/orders', ordersRouter);
+
+// user's Order history route
+app.use('/api/v1/users/', usersRouter);
 
 app.all('*', (req, res) => {
     res.status(404).json({
